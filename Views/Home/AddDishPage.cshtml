@@ -1,0 +1,53 @@
+@model DisplayDishesViewModel
+
+<div class="row justify-content-center my-3">
+  <h3>Add a new Dish!</h3>
+</div>
+<div class="row mb-4">
+  <h5><a href="/">Home</a></h5>
+</div>
+
+<form class="row" asp-action="AddDish" asp-controller="Home" method="POST">
+  <div class="col">
+    <div class="row my-4 m-3">
+      <label asp-for="Dishes.Name"></label>
+      <span asp-validation-for="Dishes.Name"></span>
+      <input class="form-control" asp-for="Dishes.Name" />
+    </div>
+    <div class="row my-4 m-3">
+      <label asp-for="Dishes.Calories"></label>
+      <span asp-validation-for="Dishes.Calories"></span>
+      <input class="form-control" asp-for="Dishes.Calories" />
+    </div>
+    <div class="row my-4 m-3">
+      <label asp-for="Dishes.Description"></label>
+      <span asp-validation-for="Dishes.Description"></span>
+      <input class="form-control" asp-for="Dishes.Description" />
+    </div>
+  </div>
+  <div class="col">
+    <div class="row my-4 m-3">
+      <label asp-for="Dishes.Tastiness"></label>
+      <span asp-validation-for="Dishes.Tastiness"></span>
+      <select asp-for="Dishes.Tastiness" class="form-control">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+  </div>
+  <div class="col">
+    <div class="row my-4 m-3">
+      <label asp-for="Dishes.ChefID"></label>
+      <span asp-validation-for="Dishes.ChefID"></span>
+      <select asp-for="Dishes.ChefID" class="form-control">
+        @foreach(Chef chef in @Model.Chefs) {
+        <option value="@chef.ChefID">@chef.FirstName @chef.LastName</option>
+        }
+      </select>
+    </div>
+    <button class="btn btn-outline-primary my-4 m-3">Add Dish</button>
+  </div>
+</form>
